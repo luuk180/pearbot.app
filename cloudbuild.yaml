@@ -1,0 +1,3 @@
+      steps:
+      - name: gcr.io/pearbot-app/firebase
+        args: ['deploy', '--project=pearbot-app', '--only=hosting']
