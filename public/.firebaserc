@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "pearbot-app": {
+      "hosting": {
+        "public": [
+          "pearbot-app"
+        ]
+      }
+    }
+  }
+}
