@@ -1,11 +1,11 @@
 steps:
-  - id: install_packages
-    name: 'node'
-    entrypoint: 'npm'
-    args: 'install'
-  - id: deploy_firebase
-    name: 'node'
-    entrypoint: 'npm'
-    args: ['run', 'deploy']
-    waitFor:
-    - install_packages
+ - id: install_packages
+   name: 'node'
+   entrypoint: 'npm'
+   args: ['install']
+ - id: deploy_firebase
+   name: 'node'
+   entrypoint: 'npm'
+   args: ['run', 'deploy']
+   waitFor:
+   - install_packages
