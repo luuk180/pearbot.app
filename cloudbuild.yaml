@@ -6,6 +6,7 @@ steps:
    - 'install'
  - id: deploy_firebase
    name: 'node'
-   args: ['npm', 'run', 'deploy']
+   entrypoint: 'npm'
+   args: ['run', 'deploy']
    waitFor:
    - install_packages
