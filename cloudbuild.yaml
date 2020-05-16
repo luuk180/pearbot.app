@@ -9,7 +9,7 @@ steps:
    args: ['run', 'build']
    waitFor:
    - install_packages
- - id: install_packages
+ - id: install_functions_packages
    name: 'node'
    entrypoint: 'npm'
    args: ['install']
