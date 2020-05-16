@@ -3,9 +3,14 @@ steps:
    name: 'node'
    entrypoint: 'npm'
    args: ['install']
- - id: deploy_firebase
+ - id: build_angular
    name: 'node'
-   entrypoint: 'npm'
-   args: ['run', 'deploy']
+   entrypoint: 'ng'
+   args: ['build', '--prod']
    waitFor:
    - install_packages
+ - id: deploy_firebase
+   name: 'gcr.io/pearbot-app/firebase'
+   args: ['deploy']
+   waitFor:
+   - build_angular
