@@ -1,3 +1,11 @@
-      steps:
-      - name: gcr.io/pearbot-app/firebase
-        args: ['deploy', '--project=pearbot-app', '--only=hosting']
+steps:
+- id: install_packages
+   name: 'node'
+   entrypoint: 'npm'
+   args:
+   - 'install'
+ - id: deploy_firebase
+   name: 'node'
+   args: ['npm', 'run', 'deploy']
+   waitFor:
+   - install_packages
