@@ -1,12 +1,18 @@
 steps:
+ - id: install_angular_cli
+   name: 'node'
+   entrypoint: 'npm'
+   args: ['install', '@angular/cli']
  - id: install_packages
    name: 'node'
    entrypoint: 'npm'
    args: ['install']
+   waitFor:
+   - install_angular_cli
  - id: build_angular
    name: 'node'
-   entrypoint: 'ng'
-   args: ['build', '--prod']
+   entrypoint: 'npm'
+   args: ['run', 'build']
    waitFor:
    - install_packages
  - id: deploy_firebase
