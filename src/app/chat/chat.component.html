@@ -1,19 +1,14 @@
 <div *ngFor="let entry of entries">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>
-        {{entry.name}}
-      </mat-card-title>
       <mat-card-subtitle>
         <p>
-          {{entry.pushedAt}}
+          {{entry.time}}
         </p>
       </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      {{entry.description}}
-      <br /> <br />
-      <a href="{{entry.url}}">{{entry.url}}</a>
+      {{entry.message}}
     </mat-card-content>
   </mat-card>
 </div>
