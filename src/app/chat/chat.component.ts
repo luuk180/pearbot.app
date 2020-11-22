@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+
+export interface Item { name: string; }
 
 @Component({
   selector: 'app-chat',
@@ -6,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-  entries;
-
-  constructor() { }
+  private itemsCollection: AngularFirestoreCollection<Item>;
+  entries: Observable<Item[]>;
+  constructor(private afs: AngularFirestore) {
+    this.itemsCollection = afs.collection<Item>('messages');
+    this.entries = this.itemsCollection.valueChanges(['added', 'removed']);
+  }
 
   ngOnInit(): void {
   }
