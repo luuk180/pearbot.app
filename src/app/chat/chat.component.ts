@@ -19,7 +19,7 @@ export class ChatComponent implements OnInit {
     private afs: AngularFirestore,
     private formBuilder: FormBuilder,
   ) {
-    this.itemsCollection = afs.collection<Item>('messages');
+    this.itemsCollection = afs.collection<Item>('messages', ref => ref.orderBy("time", "desc").limit(5));
     this.entries = this.itemsCollection.valueChanges(['added', 'removed']);
 
     this.messageForm = this.formBuilder.group({
