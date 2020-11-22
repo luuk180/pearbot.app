@@ -15,6 +15,10 @@ import { MatListModule } from '@angular/material/list';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { ChatComponent } from './chat/chat.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire/analytics';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,10 @@ import { ChatComponent } from './chat/chat.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAnalyticsModule,
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
