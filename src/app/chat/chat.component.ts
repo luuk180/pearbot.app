@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Observable } from 'rxjs';
 import { FormBuilder} from '@angular/forms';
 
-export interface Item { message: string; time: Date; }
+export interface Item { message: string; time: Date }
 
 @Component({
   selector: 'app-chat',
@@ -12,14 +12,14 @@ export interface Item { message: string; time: Date; }
 })
 export class ChatComponent implements OnInit {
   messageForm;
-  afs: AngularFirestore;
 
   private itemsCollection: AngularFirestoreCollection<Item>;
   entries: Observable<Item[]>;
   constructor(
+    private afs: AngularFirestore,
     private formBuilder: FormBuilder,
   ) {
-    this.itemsCollection = this.afs.collection<Item>('messages', ref => ref.orderBy("time", "desc").limit(5));
+    this.itemsCollection = afs.collection<Item>('messages', ref => ref.orderBy("time", "desc").limit(5));
     this.entries = this.itemsCollection.valueChanges(['added', 'removed']);
 
     this.messageForm = this.formBuilder.group({
@@ -33,7 +33,7 @@ export class ChatComponent implements OnInit {
   onSubmit(messageSent) {
     console.log(messageSent);
     var timestamp = new Date();
-    this.afs.collection<Item>('messages').add({
+    this.itemsCollection.add({
       message: messageSent.message,
       time: timestamp
     });
