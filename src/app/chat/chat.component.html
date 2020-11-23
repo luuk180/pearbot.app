@@ -1,3 +1,16 @@
+<mat-toolbar color="grey">
+  <mat-toolbar-row>
+    <form [formGroup]="messageForm" (ngSubmit)="onSubmit(messageForm.value)">
+      <mat-form-field id="messageField">
+        <mat-label>Message</mat-label>
+        <input id="message" type="text" matInput formControlName="message">
+      </mat-form-field>
+
+      <button class="button" type="submit">Submit</button>
+    </form>
+  </mat-toolbar-row>
+</mat-toolbar>
+
 <div *ngFor="let entry of entries | async">
   <mat-card>
     <mat-card-title>
@@ -8,12 +21,3 @@
     </mat-card-subtitle>
   </mat-card>
 </div>
-
-<form [formGroup]="messageForm" (ngSubmit)="onSubmit(messageForm.value)">
-  <mat-form-field appearance="fill" id="messageField">
-    <mat-label>Message</mat-label>
-    <input id="message" type="text" matInput formControlName="message">
-  </mat-form-field>
-
-  <button class="button" type="submit">Submit</button>
-</form>
