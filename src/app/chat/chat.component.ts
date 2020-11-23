@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Observable } from 'rxjs';
 import { FormBuilder} from '@angular/forms';
 
-export interface Item { name: string; }
+export interface Item { message: string; time: Date; }
 
 @Component({
   selector: 'app-chat',
@@ -12,6 +12,7 @@ export interface Item { name: string; }
 })
 export class ChatComponent implements OnInit {
   messageForm;
+  afs: AngularFirestore;
 
   private itemsCollection: AngularFirestoreCollection<Item>;
   entries: Observable<Item[]>;
