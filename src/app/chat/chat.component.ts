@@ -17,10 +17,9 @@ export class ChatComponent implements OnInit {
   private itemsCollection: AngularFirestoreCollection<Item>;
   entries: Observable<Item[]>;
   constructor(
-    private afs: AngularFirestore,
     private formBuilder: FormBuilder,
   ) {
-    this.itemsCollection = afs.collection<Item>('messages', ref => ref.orderBy("time", "desc").limit(5));
+    this.itemsCollection = this.afs.collection<Item>('messages', ref => ref.orderBy("time", "desc").limit(5));
     this.entries = this.itemsCollection.valueChanges(['added', 'removed']);
 
     this.messageForm = this.formBuilder.group({
@@ -34,7 +33,7 @@ export class ChatComponent implements OnInit {
   onSubmit(messageSent) {
     console.log(messageSent);
     var timestamp = new Date();
-    this.itemsCollection.add({
+    this.afs.collection<Item>('messages').add({
       message: messageSent.message,
       time: timestamp
     });
